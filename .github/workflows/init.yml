@@ -1,0 +1,13 @@
+name: Init Project
+on: [push]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p lib components/ui app/api/products app/api/orders app/api/clients app/api/categories app/api/finances app/api/finance-categories app/api/analytics app/api/history app/api/contractors app/api/health
+          echo "node_modules\n.next\n*.tsbuildinfo\nnext-env.d.ts\n.env\n.env.local\n.env.production" > .gitignore
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "init project structure"
